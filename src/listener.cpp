@@ -39,8 +39,7 @@
  * @param std_msgs::String::ConstPtr& A string published by publisher node
  * @return None
  */
-void chatterCallback(const std_msgs::String::ConstPtr& msg)
-{
+void chatterCallback(const std_msgs::String::ConstPtr& msg) {
   ROS_INFO("I heard: [%s]", msg->data.c_str());
 }
 
@@ -51,8 +50,7 @@ void chatterCallback(const std_msgs::String::ConstPtr& msg)
  * @param argv Character pointer array pointing to the passed arguments
  * @return 0 When the execution is successful
  */
-int main(int argc, char **argv)
-{
+int main(int argc, char **argv) {
   /// Initilize ROS node
   ros::init(argc, argv, "listener");
 

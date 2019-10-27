@@ -42,8 +42,7 @@
  * @param argv Character pointer array pointing to the passed arguments
  * @return 0 When the execution is successful
  */
-int main(int argc, char **argv)
-{
+int main(int argc, char **argv) {
   /// Initialize ROS node
   ros::init(argc, argv, "talker");
 
@@ -57,8 +56,7 @@ int main(int argc, char **argv)
 
   /// Initialize the count
   int count = 0;
-  while (ros::ok())
-  {
+  while (ros::ok()) {
     /// Crate string message
     std_msgs::String msg;
     std::stringstream ss;
