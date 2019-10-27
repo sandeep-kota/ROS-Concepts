@@ -1,7 +1,6 @@
 <h1 align="center"> ROS Tutorial: Subscriber/Publisher Node
 </h1>
 ENPM808x-Programming Assignment
-
 [![License](https://img.shields.io/badge/License-BSD%203--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)
 ---
 
