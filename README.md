@@ -26,12 +26,10 @@ This package has been tested in a system with following dependencies.
 2) After installing ROS-Kinetic run the following commands to download this project.
 ```
 source /opt/ros/kinetic/setup.bash
-mkdir ~/catkin_ws
-cd catkin_ws/
-catkin_make
-cd src/
+mkdir -p ~/catkin_ws/src
+cd ~/catkin_ws/src/
 https://github.com/sandeep-kota/beginner_tutorials
-cd ~/catkin_ws
+cd ~/catkin_ws/  
 catkin_make
 ```
 
