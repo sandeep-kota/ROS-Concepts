@@ -28,7 +28,7 @@ This package has been tested in a system with following dependencies.
 source /opt/ros/kinetic/setup.bash
 mkdir -p ~/catkin_ws/src
 cd ~/catkin_ws/src/
-https://github.com/sandeep-kota/beginner_tutorials
+git clone https://github.com/sandeep-kota/beginner_tutorials.git
 cd ~/catkin_ws/  
 catkin_make
 ```
