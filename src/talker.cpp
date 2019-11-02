@@ -31,9 +31,27 @@
  * C++ program to publish the topic "chatter" containing custom string message
  */
 
-#include <ros/ros.h>
-#include <std_msgs/String.h>
 #include <sstream>
+#include "ros/ros.h"
+#include "std_msgs/String.h"
+#include "beginner_tutorials/updateString.h"
+
+/// An external string message to make it accesible in different scope 
+extern std::string msg = "Initial Message";
+
+/**
+ * @brief A function to update the default string of talker
+ * @param beginner_tutorials::updateString::Request request the new string from client
+ * @param beginner_tutorials::updateString::Response response of the service
+ * @return true if the service execution is sucessful
+ */
+bool update(beginner_tutorials::updateString::Request &request,
+            beginner_tutorials::updateString::Response &response) {
+  /// Update the string
+  response.updatedString = request.newString;
+  msg = response.updatedString;
+  return true;
+}
 
 /**
  * @brief Main function implementation to publish to 'chatter' topic and 
@@ -49,8 +67,9 @@ int main(int argc, char **argv) {
   /// Create an instance of NodeHandle
   ros::NodeHandle n;
 
-  // Create a pubisher node to publish 'chatter' topic
+  /// Create a pubisher node to publish 'chatter' topic
   ros::Publisher chatter_pub = n.advertise<std_msgs::String>("chatter", 1000);
+  ros::ServiceServer server = n.advertiseService("update_string", update);
 
   ros::Rate loop_rate(10);
 
@@ -60,13 +79,13 @@ int main(int argc, char **argv) {
     /// Crate string message
     std_msgs::String msg;
     std::stringstream ss;
-    ss << "This is a custom message!" << count;
+    ss << msg << count;
     msg.data = ss.str();
 
     /// Display the message
     ROS_INFO("%s", msg.data.c_str());
 
-    /// Publish the message using puublisher object
+    /// Publish the message using publisher object
     chatter_pub.publish(msg);
 
     /// Command to execute all pending callbacks from all nodes
