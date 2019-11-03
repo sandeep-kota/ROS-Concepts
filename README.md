@@ -1,6 +1,6 @@
-<h1 align="center"> ROS Tutorial: Subscriber/Publisher Node
+<h1 align="center"> ROS Tutorial: Subscriber/Publisher Node with Service and Logging
 </h1>
-ENPM808x-Programming Assignment
+ENPM808x-Programming Assignment ROS Services, Logging and Launch files
 
 [![License](https://img.shields.io/badge/License-BSD%203--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)
 ---
@@ -11,7 +11,7 @@ This is a simple publisher-subscriber node implementation using ROS.
 
 ## Project Overview
 
-- Talker: Publishes message "This is a test message!" as a topic named "chatter".
+- Talker: Publishes message "Initial Message" as a topic named "chatter". The talker node also has a service named "update_string" that will update the string being published by the "talker" node. 
 - Listener: Subscribes to the topic "chatter" and prints message on the terminal window.
 
 ## Dependencies
@@ -29,26 +29,24 @@ source /opt/ros/kinetic/setup.bash
 mkdir -p ~/catkin_ws/src
 cd ~/catkin_ws/src/
 git clone https://github.com/sandeep-kota/beginner_tutorials.git
+git checkout Week10_HW
 cd ~/catkin_ws/  
 catkin_make
 ```
 
 ## Run Instructions
 
-1) Start the `roscore` in a terminal window.
+1) To launch the launch file of the talker-subscriber node with the service, run the following command.
 ```
-source /opt/ros/kinetic/setup.bash
-roscore
-```
-2) Run the `talker` node of the `beginner_tutorials` package in another terminal window.
-```
-cd ~/catkin_ws
+cd ~/catkin_ws/
 source devel/setup.bash
-rosrun beginner_tutorials talker
+roslaunch beginner_tutorials/talker frequency:= 5 #some positive number, default = 10
 ```
-3) Run the `listener` node of the `beginner_tutorials` package in another terminal window.
+2) To run the service node, run the following command in a new terminal
 ```
-cd ~/catkin_ws
+cd ~/catkin_ws/
 source devel/setup.bash
-rosrun beginner_tutorials listener
+rosservice call /update_string "Your New Message To Publish!"
 ```
+
+
