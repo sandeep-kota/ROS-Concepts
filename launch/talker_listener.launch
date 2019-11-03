@@ -1,6 +1,6 @@
 <launch>
     <arg 
-    name="freqency" 
+    name="frequency" 
     default= "10"
     />
    <node pkg="beginner_tutorials" name="talker" type="talker" output = "screen" args="$(arg frequency)"/>
