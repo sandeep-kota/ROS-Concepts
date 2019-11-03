@@ -29,8 +29,9 @@ source /opt/ros/kinetic/setup.bash
 mkdir -p ~/catkin_ws/src
 cd ~/catkin_ws/src/
 git clone https://github.com/sandeep-kota/beginner_tutorials.git
+cd beginner_tutorials/
 git checkout Week10_HW
-cd ~/catkin_ws/  
+cd ../..  
 catkin_make
 ```
 
@@ -40,8 +41,8 @@ catkin_make
 ```
 cd ~/catkin_ws/
 source devel/setup.bash
-roslaunch beginner_tutorials/talker frequency:= 5 
-#Where frequency is a positive number with default value as 10
+roslaunch beginner_tutorials talker_listener.launch frequency:=5
+#Where frequency is a positive number with default value as 10Hz
 ```
 2) To run the service node, run the following command in a new terminal
 ```
