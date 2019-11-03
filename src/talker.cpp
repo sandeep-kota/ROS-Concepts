@@ -32,10 +32,10 @@
  */
 
 #include <sstream>
+#include <string>
 #include "ros/ros.h"
 #include "std_msgs/String.h"
 #include "beginner_tutorials/updateString.h"
-#include <string>
 
 /// An external string message to make it accesible in different scope
 extern std::string text = "Initial Message";
@@ -89,9 +89,11 @@ int main(int argc, char **argv) {
             /// Create an instance of NodeHandle
             ros::NodeHandle n;
             /// Create a pubisher node to publish 'chatter' topic
-            ros::Publisher chatter_pub = n.advertise<std_msgs::String>("chatter", 1000);
+            ros::Publisher chatter_pub = n.advertise<\
+                            std_msgs::String>("chatter", 1000);
             /// Create a service server node to update the given string
-            ros::ServiceServer server = n.advertiseService("update_string", update);
+            ros::ServiceServer server = n.advertiseService("update_string", \
+                                             update);
             ros::Rate loop_rate(frequency);
             /// Initialize the count
             int count = 0;

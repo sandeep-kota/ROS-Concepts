@@ -1,4 +1,6 @@
-sandeep@sandeep-kota:~/catkin_ws/src/beginner_tutorials/src$ cpplint talker.cpp listener.cpp 
-Done processing talker.cpp
+sandeep@sandeep-kota:~/catkin_ws/src/beginner_tutorials/src$ cpplint *.cpp
 Done processing listener.cpp
-
+talker.cpp:49:  Is this a non-const reference? If so, make const or use a pointer: beginner_tutorials::updateString::Request &request  [runtime/references] [2]
+talker.cpp:50:  Is this a non-const reference? If so, make const or use a pointer: beginner_tutorials::updateString::Response &response  [runtime/references] [2]
+Done processing talker.cpp
+Total errors found: 2
