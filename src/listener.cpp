@@ -25,7 +25,7 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  * @file    listener.cpp
  * @author  Sandeep Kota
- * @version 1.0
+ * @version 2.0
  * @brief Publisher node
  * @section DESCRIPTION
  * C++ program to subscribe the topic "chatter" containing custom string message
