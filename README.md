@@ -40,7 +40,8 @@ catkin_make
 ```
 cd ~/catkin_ws/
 source devel/setup.bash
-roslaunch beginner_tutorials/talker frequency:= 5 #some positive number, default = 10
+roslaunch beginner_tutorials/talker frequency:= 5 
+#Where frequency is a positive number with default value as 10
 ```
 2) To run the service node, run the following command in a new terminal
 ```
