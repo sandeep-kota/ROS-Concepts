@@ -25,20 +25,21 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  * @file    talker.cpp
  * @author  Sandeep Kota
- * @version 2.0
+ * @version 3.0
  * @brief Publisher node
  * @section DESCRIPTION
  * C++ program to publish the topic "chatter" containing custom string message
  */
-
+#include <talker.h>
+#include <ros/ros.h>
+#include <std_msgs/String.h>
+#include <tf/transform_broadcaster.h>
 #include <sstream>
-#include <string>
-#include "ros/ros.h"
-#include "std_msgs/String.h"
 #include "beginner_tutorials/updateString.h"
 
+
 /// An external string message to make it accesible in different scope
-extern std::string text = "Initial Message";
+Message mesg;
 
 /**
  * @brief A function to update the default string of talker
@@ -50,7 +51,7 @@ bool update(beginner_tutorials::updateString::Request &request,
             beginner_tutorials::updateString::Response &response) {
     /// Update the string
     response.updatedString = request.newString;
-    text = response.updatedString;
+    mesg.message = response.updatedString;
     return true;
 }
 
@@ -66,6 +67,12 @@ int main(int argc, char **argv) {
     int frequency;
     /// Initialize ROS node
     ros::init(argc, argv, "talker");
+
+    /// Initialize broadcaster and frame
+    static tf::TransformBroadcaster br;
+    tf::Transform transform;
+    tf::Quaternion q;
+
 
     /// Check number of arguments to log messages
     if (argc == 2 || argc == 1) {
@@ -103,12 +110,19 @@ int main(int argc, char **argv) {
                 /// Crate string message
                 std_msgs::String msg;
                 std::stringstream ss;
-                ss << text;
+                ss << mesg.message;
                 msg.data = ss.str();
                 /// Display the message
                 ROS_INFO("%s", msg.data.c_str());
                 /// Publish the message using publisher object
                 chatter_pub.publish(msg);
+                /// Set origin for the tf frame and set the orientation
+                transform.setOrigin(tf::Vector3(10.0, 5.0, 6.0));
+                q.setRPY(5, 10, 1);
+                transform.setRotation(q);
+                /// Pass the tf into the broadcaster
+                br.sendTransform(tf::StampedTransform(transform, \
+                     ros::Time::now(), "world", "talk"));
                 /// Command to execute all pending callbacks from all nodes
                 ros::spinOnce();
                 loop_rate.sleep();
@@ -118,6 +132,5 @@ int main(int argc, char **argv) {
         }
     }
 }
-
 
 
