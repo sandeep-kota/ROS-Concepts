@@ -3,6 +3,14 @@
     name="frequency" 
     default= "10"
     />
+    <arg
+		name= "rosbagRecorder"
+		default= "false"	
+	/>
    <node pkg="beginner_tutorials" name="talker" type="talker" output = "screen" args="$(arg frequency)"/>
    <node pkg="beginner_tutorials" name="listener" type="listener" output = "screen"/>
+   	<node pkg= "rosbag" name= "record_bag" type= "record"
+		args = "--duration=15 -a -O $(find beginner_tutorials)/Results/recorder.bag"
+		if = "$(arg rosbagRecorder)"
+	/>
 </launch>
