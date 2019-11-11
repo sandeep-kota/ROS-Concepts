@@ -25,8 +25,8 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  * @file    listener.cpp
  * @author  Sandeep Kota
- * @version 2.0
- * @brief Publisher node
+ * @version 3.0
+ * @brief Subscriber Node
  * @section DESCRIPTION
  * C++ program to subscribe the topic "chatter" containing custom string message
  */
@@ -40,7 +40,7 @@
  * @return None
  */
 void chatterCallback(const std_msgs::String::ConstPtr& msg) {
-  ROS_INFO("I heard: [%s]", msg->data.c_str());
+  ROS_INFO("Message Received : [%s]", msg->data.c_str());
 }
 
 /**
